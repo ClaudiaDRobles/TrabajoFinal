@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Prueba2 {
+public class EntregaComprobantes{
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class Prueba2 {
             totalFactura = 0;
 
             while (agregarProducto) {
-                System.out.print("Ingresar ID del producto (o '0' para finalizar la factura): ");
+                System.out.print("Ingresar ID del producto (o '0' para finalizar la venta): ");
                 IDproducto = sc.next();
 
                 if (IDproducto.equals("0")) {
@@ -73,6 +73,8 @@ public class Prueba2 {
 
             if (realizarOtraVenta) {
                 contadorVentas++; // Incrementar el contador de ventas
+                numeroFactura = "F001-" + String.format("%04d", contadorVentas);
+                numeroBoleta = "B001-" + String.format("%04d", contadorVentas);
                 IDcliente = "C" + String.format("%03d", contadorVentas); // Generar nuevo ID de cliente
                 System.out.print("Ingresar nombre del cliente: ");
                 NombreCliente = sc.next();
@@ -125,7 +127,6 @@ public class Prueba2 {
     static public double CalcularDescuento(String MediodePago, double Importe) {
         double Descuento = 0;
 
-
         if (MediodePago.equals("BCP")) {
             Descuento = Importe * 0.10;
         } else if (MediodePago.equals("IBK")) {
@@ -137,6 +138,7 @@ public class Prueba2 {
         return Descuento;
 
     }
+
 
     static public double CalcularIGV(String ComprobantedePago, double Importe, double Descuento) {
         double IGV = 0;
